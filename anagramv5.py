@@ -11,14 +11,16 @@ def sieve(n):
     return initlist
 
 def anagram(word1, word2):
-    if len(word1) != len(word2):
+    e, f = [i for i in word1 if i.isalpha()], [j for j in word2 if j.isalpha()]
+
+    if len(e) != len(f):
         return "{} and {} are not anagrams".format(word1.upper(), word2.upper())
 
     primelist = sieve(102)
     
     word1_total, word2_total = 1, 1
 
-    for a, b in zip(word1, word2):
+    for a, b in zip(e, f):
         word1_total *= primelist[(ord(a) + 8) % 26]
         word2_total *= primelist[(ord(b) + 8) % 26]
 
